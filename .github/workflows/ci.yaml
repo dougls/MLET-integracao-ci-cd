@@ -12,7 +12,7 @@ on:
 
 # Variables
 env:
-  PYTHON_VERSION: '3.6.15'
+  PYTHON_VERSION: '3.10'
 
 # jobs
 jobs:
