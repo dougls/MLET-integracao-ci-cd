@@ -30,19 +30,16 @@ jobs:
       
       - name: Run script validation
         run: python validate_env.py
+      
+      - name: Install nbstripout
+        run: pip install nbstripout
+
+      - name: Analyse Notebooks
+        run: |
+          nbstripout --verify explorer.ipynb || (echo "ERRO: Notebook com outputs, limpe antes de commitar" && exit code 1)
 
       - name: Install Ruff (Linter)
         run: pip install ruff
 
       - name: Run Linter
         run: ruff check .
-
-      - name: Install Notebooks libs
-        run: pip install nbstripout nbqa ruff
-
-      - name: Analyse notebooks
-        run: |
-          nbstripout --verify explorer.ipynb || (echo "ERRO: Notebook com output. Limpe antes de commitar!" && exit 1)
-
-      - name: Run Linter Notebook
-        run: nbqa ruff explorer.ipynb 
