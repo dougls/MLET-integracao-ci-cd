@@ -36,3 +36,13 @@ jobs:
 
       - name: Run Linter
         run: ruff check .
+
+      - name: Install Notebooks libs
+        run: pip install nbstripout nbqa ruff
+
+      - name: Analyse notebooks
+        run: |
+          nbstripout --is-stripped explorer.ipynb || (echo "ERRO: Notebook com output, limpe antes de commitar" && exit 1)
+
+      - name: Run Linter Notebook
+        run: nbqa ruff explorer.ipynb
