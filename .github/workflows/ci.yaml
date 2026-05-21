@@ -42,8 +42,7 @@ jobs:
 
       - name: Analyse notebooks
         run: |
-          nbstripout explorer.ipynb 
-          git diff --exit-code explorer.ipynb || (echo "ERRO: Notebook com output, limpe antes de commitar" && exit 1)
+          nbstripout --verify explorer.ipynb 
 
       - name: Run Linter Notebook
         run: nbqa ruff explorer.ipynb
