@@ -30,3 +30,9 @@ jobs:
       
       - name: Run script validation
         run: python validate_env.py
+
+      - name: Install Ruff (Linter)
+        run: pip install ruff
+
+      - name: Run Linter
+        run: ruff check .
