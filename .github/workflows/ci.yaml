@@ -42,7 +42,7 @@ jobs:
 
       - name: Analyse notebooks
         run: |
-          nbstripout --is-stripped explorer.ipynb || (echo "ERRO: Notebook com output, limpe antes de commitar" && exit 1)
+          nbstripout explorer.ipynb || (echo "ERRO: Notebook com output, limpe antes de commitar" && exit 1)
 
       - name: Run Linter Notebook
         run: nbqa ruff explorer.ipynb
