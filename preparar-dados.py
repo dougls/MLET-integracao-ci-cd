@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 
 def main():
     print("Extraindo e processando dados brutos...")
