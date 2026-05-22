@@ -15,7 +15,6 @@ env:
 jobs:
   validacao-ambiente:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -53,3 +52,8 @@ jobs:
 
       - name: Dummy Training - Poetry
         run: poetry run python dummy_train.py
+
+      - name: Dummy Training Governance - Poetry
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: poetry run python dummy_train_governance.py
