@@ -28,7 +28,7 @@ jobs:
         run: poetry install
 
       - name: Rodar ETL (preparar-dados)
-        run: poetry run python preparar_dados.py
+        run: poetry run python preparar-dados.py
 
       - name: Salvar dataset como artefato
         uses: actions/upload-artifact@v7
@@ -36,6 +36,7 @@ jobs:
           name: dataset
           path: dataset_processado.csv
   treinamento:
+    needs: preparando-dados
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
