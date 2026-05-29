@@ -15,7 +15,6 @@ env:
 jobs:
   validacao-ambiente:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -47,3 +46,17 @@ jobs:
 
       - name: Install dependencies - Poetry
         run: poetry install
+
+      - name: Rodar ETL (preparar-dados)
+        run: poetry run python preparar-dados.py
+
+      - name: Dummy Training - Poetry
+        run: poetry run python dummy_train.py
+
+      - name: Dummy Training Governance - Poetry
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: poetry run python dummy_train_governance.py
+
+      - name: Tests (PyTest)
+        run: poetry run python -m pytest tests/ -v
