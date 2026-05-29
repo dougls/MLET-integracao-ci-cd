@@ -19,4 +19,4 @@ def test_schema_dados_processados():
 
     # 3. Contrato de Regra de Negócio (Target binário)
     valores_target = set(df['target'].unique())
-    assert valores_target.issubset({0, 1}), f"ANOMALIA: O target deveria ser 0 ou 1, mas veio:
+    assert valores_target.issubset({0, 1}), f"ANOMALIA: O target deveria ser 0 ou 1, mas veio: {valores_target}"
