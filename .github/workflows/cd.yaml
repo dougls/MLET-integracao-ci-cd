@@ -41,7 +41,7 @@ jobs:
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v6.1.0
         with:
-          audience: sts.amazonaws.com.cn
+          audience: sts.amazonaws.com
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::490861545571:role/OIDCGithubActionsRole
       
