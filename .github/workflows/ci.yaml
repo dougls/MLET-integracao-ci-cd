@@ -60,3 +60,5 @@ jobs:
 
       - name: Tests (PyTest)
         run: poetry run python -m pytest tests/ -v
+
+        
