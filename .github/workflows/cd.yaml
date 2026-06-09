@@ -69,7 +69,7 @@ jobs:
 
       - name: Atualizar imagem do deployment (k8s)
         run: |
-          sed -i "s|image: nginx:.*|image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.MODEL_TAG }}"
+          sed -i "s|image: nginx:.*|image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.MODEL_TAG }}|g" k8s/deployment.yaml
           sed -i "s|API_ENV_PLACEHOLDER|${{ env.API_ENV }}|g" k8s/deployment.yaml
 
       - name: Deploy - Production
