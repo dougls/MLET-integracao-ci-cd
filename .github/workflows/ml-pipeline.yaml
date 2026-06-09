@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'src/models/**'
+      - 'scripts/**'
       - 'pyproject.toml'
       - 'poetry.lock'
   # push:
@@ -15,12 +16,28 @@ on:
   #     - 'backend/**'
   #     - 'frontend/**'
   #     - 'k8s/**'
+  repository_dispatch:
+    types:
+      - anomalia-detectada-retreinar
 
 env:
   PYTHON_VERSION: '3.10'
 
 jobs:
+  anomalia-detect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recebendo o payload do Webhook
+        run: |
+          echo "Evento recebido de fora do Github!"
+          echo "Motivo do disparo: ${{ github.event.client_payload.motivo }}"
+          echo "Acurácia atual reportada: ${{ github.event.client_payload.acuracia }}"
+
+      - name: Iniciar Retreinamento
+        run: echo "Iniciando download dos dados novos e acionando instancias com GPU"
+
   preparando-dados:
+    needs: anomalia-detect
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
