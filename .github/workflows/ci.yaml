@@ -48,7 +48,7 @@ jobs:
         run: poetry install
 
       - name: Rodar ETL (preparar-dados)
-        run: poetry run python preparar-dados.py
+        run: poetry run python src/models/preparar-dados.py
 
       - name: Dummy Training - Poetry
         run: poetry run python dummy_train.py
