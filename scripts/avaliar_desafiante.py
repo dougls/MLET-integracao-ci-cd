@@ -21,7 +21,7 @@ O Sistema Imunológico detectou falhas e treinou um modelo novo. Aqui estão os 
 | **V1 (Produção)** | Champion 🛡️ | 82.0% | 0.80 | ❌ Derrotado |
 | **V2 (Recém Treinado)** | Challenger 🗡️ | **89.0%** | **0.88** | ✅ **Vencedor** |
 
-**Veredito da Máquina:** O {vencedor} obteve performance superior.
+**Veredito da Máquina:** O {vencedor} obteve performance superior.....
 
 ⚠️ **Ação Humana Requerida:** Senhor(a) Tech Lead, por favor, revise os logs. Se concordar com a máquina, aprove este Pull Request para iniciar o *deploy* em produção.
 """
