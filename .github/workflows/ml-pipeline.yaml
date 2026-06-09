@@ -8,10 +8,13 @@ on:
       - 'src/models/**'
       - 'pyproject.toml'
       - 'poetry.lock'
-    paths-ignore:
-      - 'backend/**'
-      - 'frontend/**'
-      - 'k8s/**'
+  # push:
+  #   branches:
+  #     - main
+  #   paths-ignore:
+  #     - 'backend/**'
+  #     - 'frontend/**'
+  #     - 'k8s/**'
 
 env:
   PYTHON_VERSION: '3.10'
