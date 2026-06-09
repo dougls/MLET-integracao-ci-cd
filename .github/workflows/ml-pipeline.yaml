@@ -67,6 +67,10 @@ jobs:
     needs: preparando-dados
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      pull-requests: write
+      
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -83,5 +87,25 @@ jobs:
           echo "Lendo as primeiras linhas do CSV chamado dataset:"
           cat dataset_processado.csv
 
+      - name: Executar a batalha (Champion vs Challenger)
+        run: python scripts/avaliar_desafiante.py
 
+      - name: Ler o relatório markdown
+        id: relatorio
+        run: |
+          conteudo=$(cat relatorio_pr.md)
+          echo "BODY_PR<<EOF" >> $GITHUB_ENV
+          echo "$conteudo" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Criar pull request automático
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "[BOT] Novo modelo treinado - Atualização de Arquitetura"
+          title: "[BOT] Atualização do modelo de fraude (Challenger venceu)"
+          body: ${{ env.BODY_PR }}
+          branch: "bot-pr-model"
+          base: "main"
+          labels: "mlops, machine-learning, automated-pr"
       
