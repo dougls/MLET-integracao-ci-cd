@@ -12,7 +12,7 @@ def gerar_relatorio_luta():
     
     # Criando um relatório Markdown maravilhoso para o humano ler
     relatorio_md = f"""
-## 🥊 Relatório de Combate: Champion vs Challenger
+## 🥊 Relatório de Combate: Champion vs Challenger...
 
 O Sistema Imunológico detectou falhas e treinou um modelo novo. Aqui estão os resultados da validação cruzada:
 
