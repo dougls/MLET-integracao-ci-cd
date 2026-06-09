@@ -49,3 +49,31 @@ jobs:
         run: |
           echo "Testando conexão com a AWS.."
           aws sts get-caller-identity
+    
+  deploy-production:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    environment: 
+      name: production
+      url: https://fiap.com.br
+
+    env:
+      API_ENV: "production"
+      LOG_LEVEL: "WARNING"
+      MODEL_TAG: ${{ github.sha }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Atualizar imagem do deployment (k8s)
+        run: |
+          sed -i "s|image: nginx:.*|image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.MODEL_TAG }}"
+          sed -i "s|API_ENV_PLACEHOLDER|${{ env.API_ENV }}|g" k8s/deployment.yaml
+
+      - name: Deploy - Production
+        run: |
+          echo "O arquivo YAML mutado que será enviado para nuvem"
+          cat k8s/deployment.yaml
+          echo "Deploy executado com sucesso"
