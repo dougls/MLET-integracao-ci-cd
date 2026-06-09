@@ -13,8 +13,6 @@ spec:
       labels:
         app: mlops
     spec:
-      env:
-        API_ENV_PLACEHOLDER
       containers:
         - name: nginx
           image: nginx:1.25
