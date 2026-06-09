@@ -1,0 +1,16 @@
+name: CI Workflow call
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci-workflow-call:
+    uses: dougls/MLET-integracao-ci-cd-devops/.github/workflows/template-ci-ml.yml@main
+    with:
+      versao-python: '3.10'
+      path-tests: "tests/"
+    secrets:
+      TOKEN_NUVEM: ${{ secrets.TOKEN_NUVEM }}
+    
