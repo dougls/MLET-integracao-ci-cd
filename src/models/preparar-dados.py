@@ -1,7 +1,7 @@
 import pandas as pd
 
 def main():
-    print("Extraindo e processando dados brutos...")
+    print("Extraindo e processando dados brutos....")
     # Simulando a criação de um dataset processado
     dados = {
         'feature1': [1.2, 3.4, 5.5, 7.1],
@@ -12,7 +12,7 @@ def main():
     
     # Salva o arquivo CSV no diretório atual
     df.to_csv('dataset_processado.csv', index=False)
-    print("SUCESSO: dataset_processado.csv gerado com sucesso!")
+    print("SUCESSO: dataset_processado.csv gerado com sucesso!!")
 
 if __name__ == "__main__":
     main()
