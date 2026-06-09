@@ -1,0 +1,26 @@
+name: "Monitoramento Diário"
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.10'
+jobs:
+  monitoring:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: pip install pandas scipy scikit-learn
+
+      - name: Rodar script de monitoramento
+        run: python scripts/cao_de_guarda.py

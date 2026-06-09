@@ -61,4 +61,13 @@ jobs:
       - name: Tests (PyTest)
         run: poetry run python -m pytest tests/ -v
 
+      - name: Treinar modelo (pkl)
+        run: python train.py
+
+      - name: Rodar auditoria MLOps
+        uses: dougls/MLET-integracao-ci-cd-devops/model-action@main
+        with:
+          path-model: 'outputs/modelo_fraude.pkl'
+          nivel_alerta: 'WARNING'
+
         
